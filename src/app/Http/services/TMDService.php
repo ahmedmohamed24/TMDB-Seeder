@@ -4,6 +4,7 @@ namespace App\Http\services;
 
 use App\Http\Repository\Movie\IMovieRepository;
 use App\Models\Genre;
+use App\Models\Movie;
 
 class TMDService
 {
@@ -51,9 +52,26 @@ class TMDService
         if (200 == $response->getStatusCode()) {
             $response = json_decode($response->getBody()->getContents(), true);
             if (\array_key_exists('results', $response)) {
-                $movies = $response['results'];
-                foreach ($movies as $movie) {
-                    $this->movieRepository->createFromArray($movie);
+                //validate allowed {num_of_records} in .env
+                $moviesCount = Movie::count();
+                if ($moviesCount + 20 > \config('movies.num_of_records')) {//20 -> number of records returned from API per request
+                    $restNumOfMovies = \config('movies.num_of_records') - $moviesCount;
+                    if ($restNumOfMovies <= 0) {
+                        //to avoid infinity loop
+                        return;
+                    }
+                    $movies = $response['results'];
+                    foreach ($movies as $index => $movie) {
+                        if ($index >= $restNumOfMovies) {
+                            return;
+                        }
+                        $this->movieRepository->createFromArray($movie);
+                    }
+                } else {
+                    $movies = $response['results'];
+                    foreach ($movies as $movie) {
+                        $this->movieRepository->createFromArray($movie);
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@ class CreateMoviesTable extends Migration
             $table->decimal('popularity')->default(0);
             $table->string('poster_path')->nullable();
             $table->date('release_date')->nullable();
-            $table->string('title')->unique();
+            $table->string('title')->unique(); //it should be the Slug
             $table->decimal('vote_average')->nullable();
             $table->integer('vote_count')->default(0);
             $table->timestamps();

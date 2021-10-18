@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Http\services\TMDService;
+use App\Models\Movie;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -28,7 +29,9 @@ class MoviesSeedingJob implements ShouldQueue
      */
     public function handle(TMDService $movieService)
     {
-        $movieService->getRecentlyMovies();
-        $movieService->getTopRatedMovies();
+        //TMDB returns only 20 movies per page
+        $pageNumber = \intval(Movie::count() / 20) + 1; //starts from 1 not 0
+        $movieService->getRecentlyMovies($pageNumber);
+        $movieService->getTopRatedMovies($pageNumber);
     }
 }
