@@ -16,12 +16,12 @@ class TMDService
 
     public function getRecentlyMovies($page = 1)
     {
-        $this->getMoviesByCategory('top_rated', $page);
+        $this->getMoviesByCategory('popular', $page);
     }
 
     public function getTopRatedMovies($page = 1)
     {
-        $this->getMoviesByCategory('latest', $page);
+        $this->getMoviesByCategory('top_rated', $page);
     }
 
     public function getGenres()
@@ -47,6 +47,7 @@ class TMDService
         //fetch using curl or GuzzleHTTP
         $client = new \GuzzleHttp\Client();
         $response = $client->get('https://api.themoviedb.org/3/movie/'.$category.'?api_key='.\env('TMD_API_KEY').'&language=en-US&page='.$page);
+
         if (200 == $response->getStatusCode()) {
             $response = json_decode($response->getBody()->getContents(), true);
             if (\array_key_exists('results', $response)) {
