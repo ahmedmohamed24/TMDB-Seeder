@@ -27,15 +27,20 @@
 
       ```docker-compose exec php composer install ```
 1. copy `.env-example` to `.env`
-  ``` cp .env-example .env ```
-1. set your **DB** and **TMD_API_KEY** credentials in `.env`
-1. run migrations
+
+   ``` cp src/.env.example src/.env ```
+1. generate laravel Key
+
+    ```  docker-compose exec php php /var/www/html/artisan key:generate  ```
+
+2. set your **DB** and **TMD_API_KEY** credentials in `.env`
+3. run migrations
 
      ``` docker-compose exec php php /var/www/html/artisan migrate ```
-1. run testcases
+4. run testcases
 
       ``` docker-compose exec php php /var/www/html/artisan test```
-1. run **Scheduler**
+5. run **Scheduler**
 
       ``` docker-compose exec php php /var/www/html/artisan schedule:work```
-1. import `Movies-Seeder.postman_collection.json` file in postman to test endpoints
+6. import `Movies-Seeder.postman_collection.json` file in postman to test endpoints

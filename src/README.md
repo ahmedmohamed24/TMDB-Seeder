@@ -1,5 +1,5 @@
 
-## Movies Seeder
+#Movies Seeder
 ##### current version is `v1`, start all the API routes with ``/api/v1/``
 ## Technologies:
 <p align="center">
@@ -17,7 +17,7 @@
     </a>
 </p>
 
-#### Fetch all movies
+###Fetch all movies
 
 ```http
   Get /movies
@@ -30,5 +30,15 @@
 | `popular` | `string` | **Nullable**. Order movies by their popularity, only `desc & asc` values are considered|
 | `rated` | `string` | **Nullable**. Order movies by their rating, only `desc & asc` values are considered|
 
-### Application life cycle
-> When the scheduler starts, the cron jobs runs at the specified time to fetch Generes from `The movie DB` (only for first time) and starts the movies jobs to fetch top-rated and popular movies (20 movies are returned for each), when the number of saved movies in DB equals the number of records specified in .env, the scheduler stops
+###Application life cycle
+> When the scheduler starts, the cron jobs runs at the specified time to fetch Generes from `The movie DB` (only for first time) and starts the movies jobs to fetch top-rated and popular movies (20 movies are returned for each), and attach every movie to its genere, when the number of saved movies in DB equals the number of records specified in .env, the scheduler stops
+
+###Filtering Movies
+> Filtering movies by attributes are handled inside `Movie` Model by scope filter. but for category filter, we first gets the category and then paginates over this category movies in our DB
+
+### Some Design Aspects
+1. Movie with Genere have a **Many-To-Many** Relationship
+1. Service Classes to handle Business Logic (The Movie DB logic handling)
+2. Repository pattern to seperate DB logic
+3. Uniformed API response Structure using Common trait with helper method
+4. Exceptions are translated to API response (NotFoundException in our case)
