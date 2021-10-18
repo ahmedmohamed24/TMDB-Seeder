@@ -29,9 +29,10 @@
 | `original_language` | `string` | **Nullable**. filter by a specific langauge ex: `en|fr` |
 | `popular` | `string` | **Nullable**. Order movies by their popularity, only `desc & asc` values are considered|
 | `rated` | `string` | **Nullable**. Order movies by their rating, only `desc & asc` values are considered|
+| `recently` | `string` | **Nullable**. Order movies by their creation time, only `desc & asc` values are considered|
 
 ###Application life cycle
-> When the scheduler starts, the cron jobs runs at the specified time to fetch Generes from `The movie DB` (only for first time) and starts the movies jobs to fetch top-rated and popular movies (20 movies are returned for each), and attach every movie to its genere, when the number of saved movies in DB equals the number of records specified in .env, the scheduler stops
+> When the scheduler starts, the cron jobs runs at the specified time to fetch Generes from `The movie DB` (only for first time) and starts the movies jobs to fetch popular movies (20 movies are returned for each request), and attach every movie to its genere, when the number of saved movies in DB equals the number of records specified in .env, the scheduler stops
 
 ###Filtering Movies
 > Filtering movies by attributes are handled inside `Movie` Model by scope filter. but for category filter, we first gets the category and then paginates over this category movies in our DB
