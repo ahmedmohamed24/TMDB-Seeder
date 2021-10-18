@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "829d4c57-cc01-4658-8ea5-97bf04562f0e",
+		"name": "Movies-Seeder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Movies List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{origin}}/api/v1/movies",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Movies by category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{origin}}/api/v1/movies?category_id=16",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "category_id",
+							"value": "16"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sort Movies by popularity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{origin}}/api/v1/movies?popular=asc",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "popular",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sort Movies by Rating",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{origin}}/api/v1/movies?rated=asc",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "rated",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "origin",
+			"value": "http://localhost"
+		}
+	]
+}

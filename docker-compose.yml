@@ -53,12 +53,3 @@ services:
       - "9000:9000"
     networks:
       - laravel
-
-  redis_service:
-    image: redis:alpine
-    volumes:
-      - ./redis:/data
-    ports:
-      - "6379:6379"
-    networks:
-      - laravel
