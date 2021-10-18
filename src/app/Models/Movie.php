@@ -39,6 +39,10 @@ class Movie extends Model
         if (\request()->has('rated') && ('desc' === \request('rated') || 'asc' === \request('rated'))) {
             $query->orderBy('vote_average', \request('rated'));
         }
+        if (\request()->has('recently') && ('desc' === \request('recently') || 'asc' === \request('recently'))) {
+            $query->orderBy('created_at', \request('recently'));
+            $query->orderBy('id', \request('recently')); //if time is equal, order by id
+        }
 
         return $query;
     }

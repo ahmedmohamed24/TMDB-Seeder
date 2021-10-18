@@ -24,11 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new GenresSeedingJob())->everyMinute()->when(function () {
+        $schedule->job(new GenresSeedingJob())->everyMinute(\env('TASK_TIME', '2:00'))->when(function () {
             //execute the scheduler if the genres table is empty
             return 0 === Genre::count();
         });
-        $schedule->job(new MoviesSeedingJob())->everyMinute()->when(function () {
+        $schedule->job(new MoviesSeedingJob())->everyMinute(\env('TASK_TIME', '2:00'))->when(function () {
             //execute the scheduler as long as we didn't completed the required num of movies
             return \config('movies.num_of_records') > Movie::count();
         });

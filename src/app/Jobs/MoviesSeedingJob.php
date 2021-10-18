@@ -31,7 +31,6 @@ class MoviesSeedingJob implements ShouldQueue
     {
         //TMDB returns only 20 movies per page
         $pageNumber = \intval(Movie::count() / 20) + 1; //starts from 1 not 0
-        $movieService->getRecentlyMovies($pageNumber);
         $movieService->getTopRatedMovies($pageNumber);
     }
 }

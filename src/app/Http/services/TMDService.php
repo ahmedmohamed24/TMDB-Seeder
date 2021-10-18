@@ -15,11 +15,6 @@ class TMDService
         $this->movieRepository = $movieRepository;
     }
 
-    public function getRecentlyMovies($page = 1)
-    {
-        $this->getMoviesByCategory('popular', $page);
-    }
-
     public function getTopRatedMovies($page = 1)
     {
         $this->getMoviesByCategory('top_rated', $page);
