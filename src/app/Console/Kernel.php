@@ -24,16 +24,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        /*
-                $schedule->job(new GenresSeedingJob())->dailyAt(\config('scheduler.task_time'))->when(function () {
-                    //execute the scheduler if the genres table is empty
-                    return 0 === Genre::count();
-                });
-                 $schedule->job(new MoviesSeedingJob())->dailyAt(\config('scheduler.task_time'))->when(function () {
-                    //execute the scheduler as long as we didn't completed the required num of movies
-                    return \config('movies.num_of_records') > Movie::count();
-                });
-         */
         $schedule->job(new GenresSeedingJob())->everyMinute()->when(function () {
             //execute the scheduler if the genres table is empty
             return 0 === Genre::count();
