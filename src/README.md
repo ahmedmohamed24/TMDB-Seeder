@@ -1,5 +1,5 @@
 
-#Movies Seeder
+# Movies Seeder
 ##### current version is `v1`, start all the API routes with ``/api/v1/``
 ## Technologies:
 <p align="center">
@@ -17,7 +17,7 @@
     </a>
 </p>
 
-###Fetch all movies
+### Fetch all movies
 
 ```http
   Get /movies
@@ -31,10 +31,10 @@
 | `rated` | `string` | **Nullable**. Order movies by their rating, only `desc & asc` values are considered|
 | `recently` | `string` | **Nullable**. Order movies by their creation time, only `desc & asc` values are considered|
 
-###Application life cycle
+### Application life cycle
 > When the scheduler starts, the cron jobs runs at the specified time to fetch Generes from `The movie DB` (only for first time) and starts the movies jobs to fetch popular movies (20 movies are returned for each request), and attach every movie to its genere, when the number of saved movies in DB equals the number of records specified in .env, the scheduler stops
 
-###Filtering Movies
+### Filtering Movies
 > Filtering movies by attributes are handled inside `Movie` Model by scope filter. but for category filter, we first gets the category and then paginates over this category movies in our DB
 
 ### Some Design Aspects
